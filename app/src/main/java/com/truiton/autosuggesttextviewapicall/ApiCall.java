@@ -42,8 +42,7 @@ public class ApiCall {
 
     public static void make(Context ctx, String query, Response.Listener<String>
             listener, Response.ErrorListener errorListener) {
-        String url = "https://itunes.apple.com/search?term=" + query
-                + "&country=US";
+        String url = "http://www.radio-browser.info/webservice/json/stations/byname/" + query;
         StringRequest stringRequest = new StringRequest(Request.Method.GET, url,
                 listener, errorListener);
         ApiCall.getInstance(ctx).addToRequestQueue(stringRequest);

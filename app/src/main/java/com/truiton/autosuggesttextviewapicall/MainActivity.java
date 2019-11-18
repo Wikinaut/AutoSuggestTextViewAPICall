@@ -90,11 +90,13 @@ public class MainActivity extends AppCompatActivity {
                 //parsing logic, please change it as per your requirement
                 List<String> stringList = new ArrayList<>();
                 try {
-                    JSONObject responseObject = new JSONObject(response);
-                    JSONArray array = responseObject.getJSONArray("results");
+                    // A hackish way of wrapping the response into a result element
+                    String responseJSON = "{ 'result':" + response + "}";
+                    JSONObject responseObject = new JSONObject( responseJSON );
+                    JSONArray array = responseObject.getJSONArray("result" );
                     for (int i = 0; i < array.length(); i++) {
                         JSONObject row = array.getJSONObject(i);
-                        stringList.add(row.getString("trackName"));
+                        stringList.add(row.getString("name"));
                     }
                 } catch (Exception e) {
                     e.printStackTrace();
